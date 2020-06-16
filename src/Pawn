@@ -1,0 +1,12 @@
+# class Pawn, inherits from Pieces
+from Piece import Piece
+
+class Pawn(Piece):
+    def __init__(self, args*):
+        super().init(args*
+
+    def __str__(self):
+        return str("Pawn on coords (" + self.x + "," + self.y + ")")
+
+    def validMoves(self, board):
+        pass

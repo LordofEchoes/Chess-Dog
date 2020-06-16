@@ -1,0 +1,14 @@
+#Knight Piece class
+import Piece from Piece
+
+class Knight(Piece):
+    #args are x_coord, y_coord
+    def __init__(self, args*):
+        self.x = arg[0]
+        self.y = arg[1]
+
+    def __str__(self):
+        return str("Knight on coords (" + self.x + "," + self.y + ")")
+
+    def validMoves(self, board):
+        pass

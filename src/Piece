@@ -1,0 +1,12 @@
+# Pieces class
+class Pieces():
+    #args are x_coord, y_coord
+    def __init__(self, args*):
+        self.x = arg[0]
+        self.y = arg[1]
+
+    def __str__(self):
+        return str("Piece on coords (" + self.x + "," + self.y + ")")
+
+    def validMoves(self, board):
+        pass
