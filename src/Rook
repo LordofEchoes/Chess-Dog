@@ -7,6 +7,9 @@ class Rook(Piece):
         self.x = arg[0]
         self.y = arg[1]
 
+    def __eq__(self, other):
+        return 'R' == other
+
     def __str__(self):
         return str("Rook on coords (" + self.x + "," + self.y + ")")
 

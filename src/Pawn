@@ -2,11 +2,58 @@
 from Piece import Piece
 
 class Pawn(Piece):
+    #arg[0] = x_coord
+    #arg[1] = y_coord
+    #arg[2] = isWhite
     def __init__(self, args*):
-        super().init(args*
+        super().init(args[0],args[1])
+        self.isWhite = args[2]
+        self.uptwo = True
+        self.enpassant = False
+
+    def __eq__(self, other):
+        return 'P' == other
 
     def __str__(self):
         return str("Pawn on coords (" + self.x + "," + self.y + ")")
 
-    def validMoves(self, board):
-        pass
+    def validMoves(self, board, new_x, new_y):
+        # are new coords inside the board?
+        if new_x > 7 or new_x < 0 or new_y > 7 or new_y < 0:
+            return False
+        #is self white?
+        if self.isWhite == True:
+            #try capturing techniques
+            if (new_x == self.x+1) and new_y == self.y + 1:
+                #try enpassant capture:
+                if self.x+1 <= 7:
+                    if board[self.x+1][self.y] == 'P' and board[self.x+1][self.y]:
+
+            if (new_x == self.x-1) and new_y == self.y + 1:
+                if  self.x+1 >= 0:
+                    if board[self.x+1][self.y] == 'P':
+
+                #check normal capture
+                if board[new_x][new_y] == ' ':
+                    break
+                    #new square is white
+                    if board[new_x][new_y].isWhite:
+                        break
+                    #new square isn't white
+                    else:
+                        #pawn capturing left and right
+                        if (new_x ==  self.x+1 or new_x  == self.x-1) and new_y == self.y + 1:
+                            return True
+
+
+            #check if new move is pure movement
+                if self.uptwo:
+                    if self.y+2 = new_y:
+                        if board[new_x][new_y] != 0:
+
+
+                elif self.y+1 == new_y:
+                    return True
+            else:
+                if self.y-1 == new_y:
+                    return True
