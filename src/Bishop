@@ -2,7 +2,9 @@
 import Piece from Piece
 
 class Bishop(Piece):
-    #args are x_coord, y_coord, bool white or not
+    #arg[0] = x_coord
+    #arg[1] = y_coord
+    #arg[2] = isWhite
     def __init__(self, args*):
         super().init(args[0],args[1])
         self.isWhite = args[2]
@@ -27,26 +29,23 @@ class Bishop(Piece):
                     self_check = False
                     continue
                 #board is empty till newspace
-                if board[self.x+space][self.y+space-self.x] != " ":
+                if board[space][self.y+space-self.x] != " ":
                     return False
         #check if new move is empty spot to move to.
         if board[new_x][new_y] == " ":
             return True
         #new move is a piece/capture
+        #this piece is white
+        if self.isWhite:
+            #new move is same color
+            if board[new_x][new_y].isWhite == True:
+                return False
+            #new move is different color
+            return True
+        #piece is black
         else:
-            #this piece is white
-            if self.isWhite:
-                #new move is same color
-                if board[new_x][new_y].isWhite == True:
-                    return False
-                #new move is different color
-                else:
-                    return True
-            #piece is black
-            else:
-                #new move is same color
-                if board[new_x][new_y].isWhite == False:
-                    return False
-                #new move is different color
-                else:
-                    return True
+            #new move is same color
+            if board[new_x][new_y].isWhite == False:
+                return False
+            #new move is different color
+            return True

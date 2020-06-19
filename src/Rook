@@ -2,7 +2,9 @@
 import Piece from Piece
 
 class Rook(Piece):
-    #args are x_coord, y_coord
+    #arg[0] = x_coord
+    #arg[1] = y_coord
+    #arg[2] = isWhite
     def __init__(self, args*):
         super().init(args[0],args[1])
         self.isWhite = args[2]
@@ -48,22 +50,19 @@ class Rook(Piece):
             self.canCastle = False
             return True
         #new move is a piece/capture
+        #this piece is white
+        if self.isWhite:
+            #new move is same color
+            if board[new_x][new_y].isWhite == True:
+                return False
+            #new move is different color
+            self.canCastle = False
+            return True
+        #piece is black
         else:
-            #this piece is white
-            if self.isWhite:
-                #new move is same color
-                if board[new_x][new_y].isWhite == True:
-                    return False
-                #new move is different color
-                else:
-                    self.canCaslte = False
-                    return True
-            #piece is black
-            else:
-                #new move is same color
-                if board[new_x][new_y].isWhite == False:
-                    return False
-                #new move is different color
-                else:
-                    self.canCaslte = False
-                    return True
+            #new move is same color
+            if board[new_x][new_y].isWhite == False:
+                return False
+            #new move is different color
+            self.canCastle = False
+            return True

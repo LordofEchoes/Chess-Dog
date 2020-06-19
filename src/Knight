@@ -2,10 +2,13 @@
 import Piece from Piece
 
 class Knight(Piece):
-    #args are x_coord, y_coord
+    #arg[0] = x_coord
+    #arg[1] = y_coord
+    #arg[2] = isWhite
     def __init__(self, args*):
         self.x = arg[0]
         self.y = arg[1]
+        self.isWhite = arg[2]
 
     def __eq__(self, other):
         return 'N' == other
@@ -13,5 +16,5 @@ class Knight(Piece):
     def __str__(self):
         return str("Knight on coords (" + self.x + "," + self.y + ")")
 
-    def validMoves(self, board):
+    def validMoves(self, board, new_x, new_y):
         pass

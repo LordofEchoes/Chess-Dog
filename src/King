@@ -2,10 +2,13 @@
 import Piece from Piece
 
 class King(Piece):
-    #args are x_coord, y_coord
+    #arg[0] = x_coord
+    #arg[1] = y_coord
+    #arg[2] = isWhite
     def __init__(self, args*):
-        self.x = arg[0]
-        self.y = arg[1]
+        super().init(args[0],args[1])
+        self.isWhite = args[2]
+        self.canCastle = True
 
     def __eq__(self, other):
         return 'K' == other
@@ -13,5 +16,47 @@ class King(Piece):
     def __str__(self):
         return str("King on coords (" + self.x + "," + self.y + ")")
 
-    def validMoves(self, board):
-        pass
+    def validMoves(self, board, new_x, new_y):
+        #are the new moves in the board?
+        if new_x > 7 or new_x < 0 or new_y > 7 or new_y < 0:
+            return False
+        #is the new move a castling move?
+        if self.canCastle:
+            if board[new_x][new_y] == "R" and board[new_x][new_y].canCastle:
+                #are all the blocks out of the way to castle?
+                self_check = True
+                for space in range(self.x, new_x):
+                    #don't check self for empty
+                    if self_check = True:
+                        self_check = False
+                        continue
+                    #board is empty till newspace
+                    if board[space][self.y] != " ":
+                        return False
+                #The King can castle
+                return True
+
+        #are all the moves one away?
+        if (new_x-self.x != 1 and new_x-self.x != 1) or (new_y-self.y != 1 and new_y-self.y != -1):
+            return False:
+        #moves are one away, is the move empty?
+        if board[new_x][new_y] = " ":
+            self.canCastle = False
+            return True
+        #the new space is not empty
+        #what color are you?
+        if self.isWhite:
+            #new move is same color
+            if board[new_x][new_y].isWhite == True:
+                return False
+            #new move is different color
+            self.canCastle = False
+            return True
+        #piece is black
+        else:
+            #new move is same color
+            if board[new_x][new_y].isWhite == False:
+                return False
+            #new move is different color
+            self.canCastle = False
+            return True
