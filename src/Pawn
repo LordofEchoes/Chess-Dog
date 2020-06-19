@@ -24,36 +24,76 @@ class Pawn(Piece):
         #is self white?
         if self.isWhite == True:
             #try capturing techniques
+            #try enpassant capture:
             if (new_x == self.x+1) and new_y == self.y + 1:
-                #try enpassant capture:
-                if self.x+1 <= 7:
-                    if board[self.x+1][self.y] == 'P' and board[self.x+1][self.y]:
-
-            if (new_x == self.x-1) and new_y == self.y + 1:
-                if  self.x+1 >= 0:
-                    if board[self.x+1][self.y] == 'P':
-
-                #check normal capture
-                if board[new_x][new_y] == ' ':
-                    break
-                    #new square is white
-                    if board[new_x][new_y].isWhite:
-                        break
-                    #new square isn't white
-                    else:
-                        #pawn capturing left and right
-                        if (new_x ==  self.x+1 or new_x  == self.x-1) and new_y == self.y + 1:
-                            return True
-
-
-            #check if new move is pure movement
-                if self.uptwo:
-                    if self.y+2 = new_y:
-                        if board[new_x][new_y] != 0:
-
-
-                elif self.y+1 == new_y:
+                #try capture right
+                if self.x+1 <= 7 and board[self.x+1][self.y] == 'P' and board[self.x+1][self.y].enpassant == True:
                     return True
-            else:
-                if self.y-1 == new_y:
+            elif (new_x == self.x-1) and new_y == self.y + 1:
+                #try capture left
+                if self.x+1 >= 0 and board[self.x-1][self.y] == 'P' and board[self.x-1][self.y].enpassant == True:
+                    return True
+            #check normal capture
+            if board[new_x][new_y] != ' ':
+                #new square is black
+                if board[new_x][new_y].isWhite == false:
+                    #pawn capturing left and right
+                    if (new_x ==  self.x+1 or new_x  == self.x-1) and new_y == self.y + 1:
+                        return True
+                #new square is white
+                else:
+                    return False
+            #check if new board spot is empty
+            if board[new_x][new_y] == " ":
+            #check if new move is pure movement
+                #check if move is uptwo
+                if self.y + 2 == new_y:
+                    if self.uptwo == True:
+                        self.uptwo = false
+                        self.enpassant = True
+                        return True
+                    else:
+                        return False
+                #move is up one
+                elif self.y+1 == new_y:
+                    self.uptwo = False
+                    return True
+
+
+        # self is black, same code as before up upside down
+        else:
+            #try capturing techniques
+            #try enpassant capture:
+            if (new_x == self.x+1) and new_y == self.y - 1:
+                #try capture right
+                if self.x+1 <= 7 and board[self.x+1][self.y] == 'P' and board[self.x+1][self.y].enpassant == True:
+                    return True
+            elif (new_x == self.x-1) and new_y == self.y + 1:
+                #try capture left
+                if self.x+1 >= 0 and board[self.x-1][self.y] == 'P' and board[self.x-1][self.y].enpassant == True:
+                    return True
+            #check normal capture
+            if board[new_x][new_y] != ' ':
+                #new square is black
+                if board[new_x][new_y].isWhite == false:
+                    #pawn capturing left and right
+                    if (new_x ==  self.x+1 or new_x  == self.x-1) and new_y == self.y - 1:
+                        return True
+                #new square is white
+                else:
+                    return False
+            #check if new board spot is empty
+            if board[new_x][new_y] == " ":
+            #check if new move is pure movement
+                #check if move is uptwo
+                if self.y - 2 == new_y:
+                    if self.uptwo == True:
+                        self.uptwo = false
+                        self.enpassant = True
+                        return True
+                    else:
+                        return False
+                #move is up one
+                elif self.y - 1 == new_y:
+                    self.uptwo = False
                     return True
