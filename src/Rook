@@ -23,13 +23,23 @@ class Rook(Piece):
         #check if piece can move to i
         #movement in x, y must be constant
         if new_x - self.x != 0 and new_y - self.y == 0:
+            self_check = True
             for space in range(self.x, new_x):
+                #don't check self for empty
+                if self_check = True:
+                    self_check = False
+                    continue
                 #board is empty till newspace
                 if board[space][self.y] != " ":
                     return False
         #movement in y, x must be constant
         elif new_x - self.x == 0 and new_y - self.y != 0:
+            self_check = True
             for space in range(self.y, new_y):
+                #don't check self for empty
+                if self_check = True:
+                    self_check = False
+                    continue
                 #board is empty till newspace
                 if board[self.x][space] != " ":
                     return False

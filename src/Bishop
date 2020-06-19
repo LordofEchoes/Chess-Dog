@@ -2,10 +2,10 @@
 import Piece from Piece
 
 class Bishop(Piece):
-    #args are x_coord, y_coord
+    #args are x_coord, y_coord, bool white or not
     def __init__(self, args*):
-        self.x = arg[0]
-        self.y = arg[1]
+        super().init(args[0],args[1])
+        self.isWhite = args[2]
 
     def __eq__(self, other):
         return 'B' == other
@@ -14,4 +14,39 @@ class Bishop(Piece):
         return str("Bishop on coords (" + self.x + "," + self.y + ")")
 
     def validMoves(self, board):
-        pass
+        #are the new moves in the board?
+        if new_x > 7 or new_x < 0 or new_y > 7 or new_y < 0:
+            return False
+        #check if piece can move to i
+        #movement in x and y must be equal
+        if new_x - self.x == new_y - self.y:
+            self_check = True
+            for space in range(self.x, new_x):
+                #don't check self for empty
+                if self_check = True:
+                    self_check = False
+                    continue
+                #board is empty till newspace
+                if board[self.x+space][self.y+space-self.x] != " ":
+                    return False
+        #check if new move is empty spot to move to.
+        if board[new_x][new_y] == " ":
+            return True
+        #new move is a piece/capture
+        else:
+            #this piece is white
+            if self.isWhite:
+                #new move is same color
+                if board[new_x][new_y].isWhite == True:
+                    return False
+                #new move is different color
+                else:
+                    return True
+            #piece is black
+            else:
+                #new move is same color
+                if board[new_x][new_y].isWhite == False:
+                    return False
+                #new move is different color
+                else:
+                    return True
