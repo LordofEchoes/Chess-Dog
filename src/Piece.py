@@ -1,10 +1,9 @@
 # Pieces class
-class Pieces():
+class Pieces:
     #args are x_coord, y_coord
-    def __init__(self, args*):
-        self.x = arg[0]
-        self.y = arg[1]
-
+    def __init__(self, *args):
+        self.x = args[0]
+        self.y = args[1]
 
         def __eq__(self, other):
             return ' ' == other

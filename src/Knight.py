@@ -1,14 +1,13 @@
 #Knight Piece class
-import Piece from Piece
+from Piece import Pieces
 
-class Knight(Piece):
+class Knight(Pieces):
     #arg[0] = x_coord
     #arg[1] = y_coord
     #arg[2] = isWhite
-    def __init__(self, args*):
-        self.x = arg[0]
-        self.y = arg[1]
-        self.isWhite = arg[2]
+    def __init__(self, *args):
+        super().__init__(args[0],args[1])
+        self.isWhite = args[2]
 
     def __eq__(self, other):
         return 'N' == other

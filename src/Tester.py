@@ -1,7 +1,7 @@
 #automatic tester file
 
-import Board for Board
+from Board import ChessBoard
 
-Chess = Board()
+Chess = ChessBoard()
 Chess.setUpBoard()
 print(Chess)

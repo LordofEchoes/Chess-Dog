@@ -1,12 +1,12 @@
 #Rook Piece class
-import Piece from Piece
+from Piece import Pieces
 
-class Rook(Piece):
+class Rook(Pieces):
     #arg[0] = x_coord
     #arg[1] = y_coord
     #arg[2] = isWhite
-    def __init__(self, args*):
-        super().init(args[0],args[1])
+    def __init__(self, *args):
+        super().__init__(args[0], args[1])
         self.isWhite = args[2]
         #used for King castling
         self.canCastle = True
@@ -28,7 +28,7 @@ class Rook(Piece):
             self_check = True
             for space in range(self.x, new_x):
                 #don't check self for empty
-                if self_check = True:
+                if self_check == True:
                     self_check = False
                     continue
                 #board is empty till newspace
@@ -39,7 +39,7 @@ class Rook(Piece):
             self_check = True
             for space in range(self.y, new_y):
                 #don't check self for empty
-                if self_check = True:
+                if self_check == True:
                     self_check = False
                     continue
                 #board is empty till newspace

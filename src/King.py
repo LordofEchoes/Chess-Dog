@@ -1,12 +1,12 @@
 #King Piece class
-import Piece from Piece
+from Piece import Pieces
 
-class King(Piece):
+class King(Pieces):
     #arg[0] = x_coord
     #arg[1] = y_coord
     #arg[2] = isWhite
-    def __init__(self, args*):
-        super().init(args[0],args[1])
+    def __init__(self, *args):
+        super().__init__(args[0],args[1])
         self.isWhite = args[2]
         self.canCastle = True
 
@@ -27,7 +27,7 @@ class King(Piece):
                 self_check = True
                 for space in range(self.x, new_x):
                     #don't check self for empty
-                    if self_check = True:
+                    if self_check == True:
                         self_check = False
                         continue
                     #board is empty till newspace
@@ -38,9 +38,9 @@ class King(Piece):
 
         #are all the moves one away?
         if (new_x-self.x != 1 and new_x-self.x != 1) or (new_y-self.y != 1 and new_y-self.y != -1):
-            return False:
+            return False
         #moves are one away, is the move empty?
-        if board[new_x][new_y] = " ":
+        if board[new_x][new_y] == " ":
             self.canCastle = False
             return True
         #the new space is not empty

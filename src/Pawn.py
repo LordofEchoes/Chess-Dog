@@ -1,12 +1,12 @@
 # class Pawn, inherits from Pieces
-from Piece import Piece
+from Piece import Pieces
 
-class Pawn(Piece):
+class Pawn(Pieces):
     #arg[0] = x_coord
     #arg[1] = y_coord
     #arg[2] = isWhite
-    def __init__(self, args*):
-        super().init(args[0],args[1])
+    def __init__(self, *args):
+        super().__init__(args[0],args[1])
         self.isWhite = args[2]
         self.uptwo = True
         self.enpassant = False
