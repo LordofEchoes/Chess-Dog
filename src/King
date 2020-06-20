@@ -14,7 +14,7 @@ class King(Piece):
         return 'K' == other
 
     def __str__(self):
-        return str("King on coords (" + self.x + "," + self.y + ")")
+        return "K"
 
     def validMoves(self, board, new_x, new_y):
         #are the new moves in the board?

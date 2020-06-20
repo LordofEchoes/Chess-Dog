@@ -1,0 +1,7 @@
+#automatic tester file
+
+import Board for Board
+
+Chess = Board()
+Chess.setUpBoard()
+print(Chess)

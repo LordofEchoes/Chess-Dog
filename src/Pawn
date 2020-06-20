@@ -15,7 +15,7 @@ class Pawn(Piece):
         return 'P' == other
 
     def __str__(self):
-        return str("Pawn on coords (" + self.x + "," + self.y + ")")
+        return "P"
 
     def validMoves(self, board, new_x, new_y):
         # are new coords inside the board?

@@ -13,7 +13,7 @@ class Queen(Piece):
         return 'Q' == other
 
     def __str__(self):
-        return str("Queen on coords (" + self.x + "," + self.y + ")")
+        return "Q"
 
     def validMoves(self, board, new_x, new_y):
         #are the new moves in the board?

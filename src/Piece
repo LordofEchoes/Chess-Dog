@@ -10,7 +10,7 @@ class Pieces():
             return ' ' == other
 
     def __str__(self):
-        return str("Piece on coords (" + self.x + "," + self.y + ")")
+        return str("Piece")
 
     def validMoves(self, board, new_x, new_y):
         pass

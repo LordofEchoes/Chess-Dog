@@ -1,0 +1,72 @@
+# Board Class
+import Pawn from Pawn
+import Knight from Knight
+import Rook from Rook
+import Bishop from Bishop
+import King from King
+import Queen from Queen
+
+class Board():
+
+    def __init__(self):
+        self.board = [[" " for x in range(0,8)] for y in range(0,8)]
+        self.white = set()
+        self.black = set()
+
+    def __eq__(self, other):
+        return self.board == other.board
+
+    def __str__(self):
+        #print the board
+        string = "Chess Board:\n a b c d e f g h \n"
+        for x in range(0,8):
+            string += str(x + 1) + " "
+            for y in range(0,8):
+                string += board[x][y] + " "
+            string += "\n"
+        return string
+
+    def setUpBoard(self):
+        #set up white
+        self.white = set(Pawn(0,1,True),
+        Pawn(1,1,True),
+        Pawn(2,1,True),
+        Pawn(3,1,True),
+        Pawn(4,1,True),
+        Pawn(5,1,True),
+        Pawn(6,1,True),
+        Pawn(7,1,True),
+        Knight(1,0,True),
+        Knight(7,0,True),
+        Bishop(2,0,True),
+        Bishop(6,0,True),
+        Rook(0,0,True),
+        Rook(8,0,True),
+        King(4,0,True),
+        Queen(5,0,True)
+        )
+
+        #set up Black
+        self.black = set(Pawn(0,6,False),
+        Pawn(1,6,False),
+        Pawn(2,6,False),
+        Pawn(3,6,False),
+        Pawn(4,6,False),
+        Pawn(5,6,False),
+        Pawn(6,6,False),
+        Pawn(7,6,False),
+        Knight(1,7,False),
+        Knight(7,7,False),
+        Bishop(2,7,False),
+        Bishop(6,7,False),
+        Rook(0,7,False),
+        Rook(8,7,False),
+        King(4,7,False),
+        Queen(5,7,False)
+        )
+
+        #set up board
+        for obj in self.white:
+            board[obj.x][obj.y] = obj
+        for obj in self.black:
+            board[obj.x][obj.y] = obj

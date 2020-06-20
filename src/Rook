@@ -15,7 +15,7 @@ class Rook(Piece):
         return 'R' == other
 
     def __str__(self):
-        return str("Rook on coords (" + self.x + "," + self.y + ")")
+        return "R"
 
     #return True or False
     def validMoves(self, board, new_x, new_y):

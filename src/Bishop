@@ -13,7 +13,7 @@ class Bishop(Piece):
         return 'B' == other
 
     def __str__(self):
-        return str("Bishop on coords (" + self.x + "," + self.y + ")")
+        return "B"
 
     def validMoves(self, board):
         #are the new moves in the board?
