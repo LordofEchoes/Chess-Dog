@@ -15,7 +15,7 @@ class Bishop(Pieces):
     def __str__(self):
         return "B"
 
-    def validMoves(self, board):
+    def validMoves(self, board, new_x, new_y):
         #are the new moves in the board?
         if new_x > 7 or new_x < 0 or new_y > 7 or new_y < 0:
             return False
@@ -29,8 +29,13 @@ class Bishop(Pieces):
                     self_check = False
                     continue
                 #board is empty till newspace
+                print("x space :", space, "y space: ", str(self.y+space-self.x))
                 if board[space][self.y+space-self.x] != " ":
+                    print("bishop obstacle")
                     return False
+        else:
+            #can't move to the spot
+            return False
         #check if new move is empty spot to move to.
         if board[new_x][new_y] == " ":
             return True
@@ -39,13 +44,17 @@ class Bishop(Pieces):
         if self.isWhite:
             #new move is same color
             if board[new_x][new_y].isWhite == True:
+                print("bishop same move 1")
                 return False
             #new move is different color
+            print("bishop capture 1")
             return True
         #piece is black
         else:
             #new move is same color
             if board[new_x][new_y].isWhite == False:
+                print("bishop same move 1")
                 return False
             #new move is different color
+            print("bishop capture 2")
             return True

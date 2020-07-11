@@ -45,6 +45,9 @@ class Rook(Pieces):
                 #board is empty till newspace
                 if board[self.x][space] != " ":
                     return False
+        else:
+            #can't move to the spot
+            return False
         #check if new move is empty.
         if board[new_x][new_y] == " ":
             self.canCastle = False

@@ -36,7 +36,7 @@ class Pawn(Pieces):
             #check normal capture
             if board[new_x][new_y] != ' ':
                 #new square is black
-                if board[new_x][new_y].isWhite == false:
+                if board[new_x][new_y].isWhite == False:
                     #pawn capturing left and right
                     if (new_x ==  self.x+1 or new_x  == self.x-1) and new_y == self.y + 1:
                         return True
@@ -75,7 +75,7 @@ class Pawn(Pieces):
             #check normal capture
             if board[new_x][new_y] != ' ':
                 #new square is black
-                if board[new_x][new_y].isWhite == false:
+                if board[new_x][new_y].isWhite == False:
                     #pawn capturing left and right
                     if (new_x ==  self.x+1 or new_x  == self.x-1) and new_y == self.y - 1:
                         return True
