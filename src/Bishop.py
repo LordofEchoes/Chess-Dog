@@ -19,20 +19,50 @@ class Bishop(Pieces):
         #are the new moves in the board?
         if new_x > 7 or new_x < 0 or new_y > 7 or new_y < 0:
             return False
-        #check if piece can move to i
         #movement in x and y must be equal
-        if new_x - self.x == new_y - self.y:
-            self_check = True
-            for space in range(self.x, new_x):
-                #don't check self for empty
-                if self_check == True:
-                    self_check = False
-                    continue
-                #board is empty till newspace
-                print("x space :", space, "y space: ", str(self.y+space-self.x))
-                if board[space][self.y+space-self.x] != " ":
-                    print("bishop obstacle")
-                    return False
+        if abs(new_x - self.x) == abs(new_y - self.y) and new_y - self.y != 0:
+            # check if positive or negative
+            #positive x direction
+            if new_x > self.x:
+                # positive y direction
+                if new_y > self.y:
+                    for space in range(1, new_x - self.x):
+                        #don't check self for empty
+                        #board is empty till newspace
+                        # print("x space :", str(self.x+space), "y space: ", str(self.y+space))
+                        if board[self.x+space][self.y+space] != " ":
+                            # print("bishop obstacle: 1")
+                            return False
+                #negative y direction
+                else:
+                    for space in range(1, new_x - self_x):
+                        #don't check self for empty
+                        #board is empty till newspace
+                        # print("x space :", str(self.x+space), "y space: ", str(self.y-space))
+                        if board[self.x-space][self.y-space] != " ":
+                            # print("bishop obstacle:2")
+                            return False
+            #negative y direction
+            else:
+                if new_x > self.x:
+                    # positive x direction
+                    if new_y > self.y:
+                        for space in range(1, self.x - new_x):
+                            #don't check self for empty
+                            #board is empty till newspace
+                            # print("x space :", str(self.x-space), "y space: ", str(self.y+space))
+                            if board[self.x-space][self.y+space] != " ":
+                                # print("bishop obstacle:3")
+                                return False
+                    #negative x direction
+                    else:
+                        for space in range(1, self.x - new_x):
+                            #don't check self for empty
+                            #board is empty till newspace
+                            # print("x space :", str(self.x-space), "y space: ", str(self.y-space))
+                            if board[self.x-space][self.y-space] != " ":
+                                # print("bishop obstacle:4")
+                                return False
         else:
             #can't move to the spot
             return False

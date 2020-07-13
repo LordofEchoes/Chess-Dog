@@ -25,26 +25,38 @@ class Rook(Pieces):
         #check if piece can move to i
         #movement in x, y must be constant
         if new_x - self.x != 0 and new_y - self.y == 0:
-            self_check = True
-            for space in range(self.x, new_x):
-                #don't check self for empty
-                if self_check == True:
-                    self_check = False
-                    continue
-                #board is empty till newspace
-                if board[space][self.y] != " ":
-                    return False
+            # check if positive or negative
+            #positive x direction
+            if self.x > new_x:
+                for space in range(1, new_x-self.x):
+                    #don't check self for empty
+                    #board is empty till newspace
+                    if board[self.x+space][self.y] != " ":
+                        return False
+            else:
+                #negative x direction
+                for space in range(1, self.x - new_x):
+                    #don't check self for empty
+                    #board is empty till newspace
+                    if board[self.x-space][self.y] != " ":
+                        return False
         #movement in y, x must be constant
         elif new_x - self.x == 0 and new_y - self.y != 0:
-            self_check = True
-            for space in range(self.y, new_y):
-                #don't check self for empty
-                if self_check == True:
-                    self_check = False
-                    continue
-                #board is empty till newspace
-                if board[self.x][space] != " ":
-                    return False
+            # check if positive or negative
+            #positive y direction
+            if self.y > new_y:
+                for space in range(1, new_y - self.y):
+                    #don't check self for empty
+                    #board is empty till newspace
+                    if board[self.x][self.y+space] != " ":
+                        return False
+            else:
+                # negative y direction
+                for space in range(1, self.y - new_y):
+                    #don't check self for empty
+                    #board is empty till newspace
+                    if board[self.x][self.y-space] != " ":
+                        return False
         else:
             #can't move to the spot
             return False

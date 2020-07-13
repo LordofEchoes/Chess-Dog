@@ -14,6 +14,8 @@ class ChessBoard:
         self.black = list()
         self.graveyard = list()
         self.move = 0
+        self.enpassant = False
+        self.EPlocation = tuple()
 
     def __eq__(self, other):
         return self.board == other.board
@@ -85,7 +87,7 @@ class ChessBoard:
                 if obj == "K":
                     #can any piece kill the King?
                     for enemy in self.black:
-                        print("enemy", enemy, "\nx:", enemy.x, "\ny:", enemy.y)
+                        # print("enemy", enemy, " x:", enemy.x, " y:", enemy.y)
                         if enemy != "K" and enemy.validMoves(self.board, obj.x, obj.y):
                             return True
                     return False
@@ -96,7 +98,7 @@ class ChessBoard:
                 if obj == "K":
                     #can another piece kill the King
                     for enemy in self.white:
-                        print("enemy", enemy, "\nx:", enemy.x, "\ny:", enemy.y)
+                        # print("enemy", enemy, " x:", enemy.x, " y:", enemy.y)
                         if enemy != "K" and enemy.validMoves(self.board, obj.x, obj.y):
                             return True
                     return False
@@ -119,7 +121,7 @@ class ChessBoard:
         tempyard =  self.graveyard
         #are they moving a piece
         if self.board[start_x][start_y] == " ":
-            print("0")
+            print("not a piece: 1")
             return False
         #are they moving a white piece
         if self.board[start_x][start_y].isWhite == White:
@@ -175,17 +177,17 @@ class ChessBoard:
             self.black = tempblack
             self.graveyard = tempyard
             self.movePiece(self.board,new_x,new_y,start_x,start_y)
+        print("not a valid move: 1")
         return False
-
+    # performs moves but as black
     def performMoveBlack(self, start_x, start_y, new_x, new_y, White):
         temp = self.board
         tempwhite = self.white
         tempyard =  self.graveyard
         #are they moving a piece
         if self.board[start_x][start_y] == " ":
-            print("0")
+            print("not a piece: 2")
             return False
-        # print(temp)
         #are they moving a black piece
         if self.board[start_x][start_y].isWhite == White:
             #is the move a castling move
@@ -239,4 +241,10 @@ class ChessBoard:
             self.white = tempwhite
             self.graveyard = tempyard
             self.movePiece(self.board,new_x,new_y,start_x,start_y)
-        return False
+            return False
+        else:
+            #if the newly moved piece isn't a pawn then enpassant is false
+            if self.board[new_x][new_y] != "P":
+                board.enpassant = False
+                board.EPlocation = ()
+            return True
