@@ -28,19 +28,19 @@ class Pawn(Pieces):
         #try capturing techniques
         #try enpassant capture:
         if (new_x == self.x+1) and new_y == self.y+color:
-            print("Pawn enpassant: 1")
             #try capture right
-            if self.x+1 <= 7 and board.enpassant == True and board.EPlocation == (new_x,new_y)::
+            if self.x+1 <= 7 and board.enpassant == True and board.EPlocation == (new_x,new_y-color):
+                print("Pawn enpassant: 1")
                 return True
         elif (new_x == self.x-1) and new_y == self.y+color:
             #try capture left
-            print("Pawn enpassant: 2")
-            if self.x-1 >= 0  and board.enpassant == True and board.EPlocation == (new_x,new_y):
+            if self.x-1 >= 0  and board.enpassant == True and board.EPlocation == (new_x,new_y-color):
+                print("Pawn enpassant: 2")
                 return True
         #check normal capture
-        if board[new_x][new_y] != ' ':
+        if board.board[new_x][new_y] != ' ':
             #new square is black
-            if board[new_x][new_y].isWhite == False:
+            if board.board[new_x][new_y].isWhite == False:
                 #pawn capturing left and right
                 if (new_x ==  self.x+1 or new_x  == self.x-1) and new_y == self.y+color:
                     print("Pawn capture: 1")
@@ -49,18 +49,19 @@ class Pawn(Pieces):
             else:
                 return False
         #check if new board spot is empty
-        if board[new_x][new_y] == " ":
+        if board.board[new_x][new_y] == " ":
         #check if new move is pure movement
             #check if move is uptwo
             if self.y+color*2 == new_y:
                 if self.uptwo == True:
-                    if board[self.x][self.y+color] != " ":
+                    if board.board[self.x][self.y+color] != " ":
                         return False
                     self.uptwo = False
                     #uptwo is utilized
                     #board updates enpassant
                     board.enpassant = True
                     board.EPlocation = (new_x,new_y)
+                    print("Pawn uptwo: 1")
                     return True
                 else:
                     return False

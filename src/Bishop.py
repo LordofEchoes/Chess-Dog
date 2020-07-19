@@ -30,7 +30,7 @@ class Bishop(Pieces):
                         #don't check self for empty
                         #board is empty till newspace
                         # print("x space :", str(self.x+space), "y space: ", str(self.y+space))
-                        if board[self.x+space][self.y+space] != " ":
+                        if board.board[self.x+space][self.y+space] != " ":
                             # print("bishop obstacle: 1")
                             return False
                 #negative y direction
@@ -39,7 +39,7 @@ class Bishop(Pieces):
                         #don't check self for empty
                         #board is empty till newspace
                         # print("x space :", str(self.x+space), "y space: ", str(self.y-space))
-                        if board[self.x-space][self.y-space] != " ":
+                        if board.board[self.x-space][self.y-space] != " ":
                             # print("bishop obstacle:2")
                             return False
             #negative y direction
@@ -51,7 +51,7 @@ class Bishop(Pieces):
                             #don't check self for empty
                             #board is empty till newspace
                             # print("x space :", str(self.x-space), "y space: ", str(self.y+space))
-                            if board[self.x-space][self.y+space] != " ":
+                            if board.board[self.x-space][self.y+space] != " ":
                                 # print("bishop obstacle:3")
                                 return False
                     #negative x direction
@@ -60,20 +60,20 @@ class Bishop(Pieces):
                             #don't check self for empty
                             #board is empty till newspace
                             # print("x space :", str(self.x-space), "y space: ", str(self.y-space))
-                            if board[self.x-space][self.y-space] != " ":
+                            if board.board[self.x-space][self.y-space] != " ":
                                 # print("bishop obstacle:4")
                                 return False
         else:
             #can't move to the spot
             return False
         #check if new move is empty spot to move to.
-        if board[new_x][new_y] == " ":
+        if board.board[new_x][new_y] == " ":
             return True
         #new move is a piece/capture
         #this piece is white
         if self.isWhite:
             #new move is same color
-            if board[new_x][new_y].isWhite == True:
+            if board.board[new_x][new_y].isWhite == True:
                 print("bishop same move 1")
                 return False
             #new move is different color
@@ -82,7 +82,7 @@ class Bishop(Pieces):
         #piece is black
         else:
             #new move is same color
-            if board[new_x][new_y].isWhite == False:
+            if board.board[new_x][new_y].isWhite == False:
                 print("bishop same move 1")
                 return False
             #new move is different color

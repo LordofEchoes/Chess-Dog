@@ -16,40 +16,45 @@ class Queen(Pieces):
         return "Q"
 
     def validMoves(self, board, new_x, new_y):
+        # print("Queen: check")
         #are the new moves in the board?
         if new_x > 7 or new_x < 0 or new_y > 7 or new_y < 0:
+            print("Queen: new move not in board")
             return False
         #is the movement diagonal or a straight line from the Queen?
         #Queen moves in straight line of x coord
         if (new_x - self.x != 0 and new_y - self.y == 0):
             #positive x direction
-            if self.x > new_x:
+            if self.x < new_x:
                 for space in range(1, new_x-self.x):
                     #don't check self for empty
                     #board is empty till newspace
-                    if board[self.x+space][self.y] != " ":
+                    if board.board[self.x+space][self.y] != " ":
                         return False
             else:
                 #negative x direction
                 for space in range(1, self.x - new_x):
                     #don't check self for empty
                     #board is empty till newspace
-                    if board[self.x-space][self.y] != " ":
+                    if board.board[self.x-space][self.y] != " ":
                         return False
         #Queen moves in a straight line of y coord
         elif new_x - self.x == 0 and new_y - self.y != 0:
-            if self.y > new_y:
+            print("Queen: Rook in y")
+            if self.y < new_y:
+                print("Queen: Rook in +y")
                 for space in range(1, new_y - self.y):
                     #don't check self for empty
                     #board is empty till newspace
-                    if board[self.x][self.y+space] != " ":
+                    if board.board[self.x][self.y+space] != " ":
                         return False
             else:
                 # negative y direction
+                print("Queen: Rook in -y")
                 for space in range(1, self.y - new_y):
                     #don't check self for empty
                     #board is empty till newspace
-                    if board[self.x][self.y-space] != " ":
+                    if board.board[self.x][self.y-space] != " ":
                         return False
         #Queen moves in a bishop like manner
         elif abs(new_x - self.x) == abs(new_y - self.y) and new_y - self.y != 0:
@@ -62,16 +67,16 @@ class Queen(Pieces):
                         #don't check self for empty
                         #board is empty till newspace
                         print("x space :", str(self.x+space), "y space: ", str(self.y+space))
-                        if board[self.x+space][self.y+space] != " ":
+                        if board.board[self.x+space][self.y+space] != " ":
                             print("Queen obstacle: 1")
                             return False
                 #negative y direction
                 else:
-                    for space in range(1, new_x - self_x):
+                    for space in range(1, new_x - self.x):
                         #don't check self for empty
                         #board is empty till newspace
                         print("x space :", str(self.x+space), "y space: ", str(self.y-space))
-                        if board[self.x - space][self.y - space] != " ":
+                        if board.board[self.x - space][self.y - space] != " ":
                             print("Queen obstacle:2")
                             return False
             else:
@@ -83,7 +88,7 @@ class Queen(Pieces):
                             #don't check self for empty
                             #board is empty till newspace
                             print("x space :", str(self.x-space), "y space: ", str(self.y+space))
-                            if board[self.x - space][self.y+space] != " ":
+                            if board.board[self.x - space][self.y+space] != " ":
                                 print("Queen obstacle:3")
                                 return False
                     #negative y direction
@@ -92,7 +97,7 @@ class Queen(Pieces):
                             #don't check self for empty
                             #board is empty till newspace
                             print("x space :", str(self.x-space), "y space: ", str(self.y-space))
-                            if board[self.x - space][self.y - space] != " ":
+                            if board.board[self.x - space][self.y - space] != " ":
                                 print("Queen obstacle:4")
                                 return False
         #path is not a valid move for the Queen
@@ -100,20 +105,23 @@ class Queen(Pieces):
             return False
 
         #path is clear for the Queen
-        if board[new_x][new_y] == " ":
+        if board.board[new_x][new_y] == " ":
+            print("Queen: path clear")
             return True
         else:
             # Queen is white
             if self.isWhite:
                 #new move is same color
-                if board[new_x][new_y].isWhite == True:
+                if board.board[new_x][new_y].isWhite == True:
                     return False
                 #new move is different color
+                print("Queen: white eats black")
                 return True
             #Queen is black
             else:
                 #new move is same color
-                if board[new_x][new_y].isWhite == False:
+                if board.board[new_x][new_y].isWhite == False:
                     return False
                 #new move is different color
+                print("Queen: black eats white")
                 return True

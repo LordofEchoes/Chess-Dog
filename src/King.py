@@ -31,31 +31,31 @@ class King(Pieces):
                     self_check = False
                     continue
                 #board is empty till newspace
-                if board[space][self.y] != " ":
+                if board.board[space][self.y] != " ":
                     return False
             if self.isWhite:
                 #King is attempting to castle Queenside
                 if new_x == 2 and new_y == 0:
-                    if board[0][0] == "R" and board[0][0].canCastle:
+                    if board.board[0][0] == "R" and board.board[0][0].canCastle:
                         #The King can castle
                         isCastle = True
                         return True
                 #King is attempting to castle Kingside
                 if new_x == 6 and new_y == 0:
-                    if board[7][0] == "R" and board[7][0].canCastle:
+                    if board.board[7][0] == "R" and board.board[7][0].canCastle:
                         #The King can castle
                         isCastle = True
                         return True
             else:
                 #King is attempting to castle Queenside
                 if new_x == 2 and new_y == 7:
-                    if board[0][7] == "R" and board[0][7].canCastle:
+                    if board.board[0][7] == "R" and board.board[0][7].canCastle:
                         #The King can castle
                         isCastle = True
                         return True
                 #King is attempting to castle Kingside
                 if new_x == 6 and new_y == 7:
-                    if board[7][7] == "R" and board[7][7].canCastle:
+                    if board.board[7][7] == "R" and board.board[7][7].canCastle:
                         #The King can castle
                         isCastle = True
                         return True
@@ -64,14 +64,14 @@ class King(Pieces):
         if (new_x-self.x != 1 and new_x-self.x != 1) or (new_y-self.y != 1 and new_y-self.y != -1):
             return False
         #moves are one away, is the move empty?
-        if board[new_x][new_y] == " ":
+        if board.board[new_x][new_y] == " ":
             self.canCastle = False
             return True
         #the new space is not empty
         #what color are you?
         if self.isWhite:
             #new move is same color
-            if board[new_x][new_y].isWhite == True:
+            if board.board[new_x][new_y].isWhite == True:
                 return False
             #new move is different color
             self.canCastle = False
@@ -79,7 +79,7 @@ class King(Pieces):
         #piece is black
         else:
             #new move is same color
-            if board[new_x][new_y].isWhite == False:
+            if board.board[new_x][new_y].isWhite == False:
                 return False
             #new move is different color
             self.canCastle = False

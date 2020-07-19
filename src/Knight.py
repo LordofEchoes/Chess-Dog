@@ -22,20 +22,20 @@ class Knight(Pieces):
         #check if new move is valid:
         if (abs(new_x - self.x) == 2 and abs(new_y - self.y) == 1) or (abs(new_x - self.x) == 1 and abs(new_y-self.y) == 2):
             #new move is valid, is the new move empty?
-            if board[new_x][new_y] == " ":
+            if board.board[new_x][new_y] == " ":
                 return True
             #new move is occupied
             #this piece is white
             if self.isWhite:
                 #new move is same color
-                if board[new_x][new_y].isWhite == True:
+                if board.board[new_x][new_y].isWhite == True:
                     return False
                 #new move is different color
                 return True
             #piece is black
             else:
                 #new move is same color
-                if board[new_x][new_y].isWhite == False:
+                if board.board[new_x][new_y].isWhite == False:
                     return False
                 #new move is different color
                 return True
